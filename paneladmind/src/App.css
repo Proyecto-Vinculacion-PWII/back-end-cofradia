@@ -1,0 +1,61 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.nombre {
+  font-size: 1em; 
+}
+
+.container {
+  margin-top: 100px;
+}
+
+.navbar {
+  background-color: rgba(255, 196, 0, 0.795);
+  display: flex;
+  align-items: center; 
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.nav-items {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 15px;
+  cursor: pointer;
+}
+
+.main-content {
+  padding: 20px;
+  text-align: center;
+}
+
+
+
+.info-detalles {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+
+
+.foto {
+  width: 100px;
+  height: auto;
+  margin: 10px;
+}
+
+
