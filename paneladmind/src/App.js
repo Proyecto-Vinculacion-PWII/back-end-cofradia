@@ -5,6 +5,7 @@ import Navbar from './Componentes/Navbar';
 import { Cursos } from './Componentes/CursosDisponibles';
 import { Eventos } from './Componentes/Eventos';
 import { LoginForm } from './Componentes/Login';
+import UploadFiles from './Componentes/UploadFiles';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ const Dashboard = () => (
     <div className="container mt-5">
       <Cursos />
       <Eventos />
+      <UploadFiles />
     </div>
   </>
 );
