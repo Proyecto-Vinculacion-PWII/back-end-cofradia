@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Timestamp } from 'firebase/firestore/lite';
 
-
 const MySwal = withReactContent(Swal);
 
 export const Cursos = () => {
@@ -22,6 +21,7 @@ export const Cursos = () => {
     descripcion: '',
     imagen: ''
   });
+
   const cursosCollection = collection(db, "Cursos");
 
   const getCursos = async () => {
@@ -44,8 +44,6 @@ export const Cursos = () => {
     getCursos();
   };
 
-
-
   const handleShow = () => {
     setCurrentCurso({
       id: '',
@@ -61,7 +59,7 @@ export const Cursos = () => {
 
   const handleClose = () => setShow(false);
 
- const confirmDelete = (id) => {
+  const confirmDelete = (id) => {
     MySwal.fire({
       title: "Eliminar el Curso?",
       text: "No podrás revertir esto!",
@@ -86,6 +84,7 @@ export const Cursos = () => {
     setCurrentCurso(curso);
     setShow(true);
   };
+
   const handleSave = async () => { 
     if (!currentCurso.nombre || !currentCurso.fechaInicio || !currentCurso.dias || !currentCurso.horario || !currentCurso.descripcion || !currentCurso.imagen) {
       MySwal.fire({
@@ -96,14 +95,10 @@ export const Cursos = () => {
       return;
     }
 
-    
     const newCurso = {
       ...currentCurso,
       fechaInicio: Timestamp.fromDate(new Date(currentCurso.fechaInicio))
     };
-
-
- 
 
     if (newCurso.id) {
       const cursoDoc = doc(db, "Cursos", newCurso.id);
@@ -125,37 +120,36 @@ export const Cursos = () => {
           text: "Tu Curso ha sido añadido.",
           icon: "success"
         });
+        getCursos();  
       } catch (error) {
         console.error("Error adding document: ", error);
       }
     }
 
     setShow(false);
-    getCursos();
   };
 
   useEffect(() => {
     getCursos();
   }, []);
-  
 
   return (
     <div className="container col-lg-8">
       <h2 className="mt-5">Cursos</h2>
-      <Button variant="success" className="mb-3" onClick={() => handleShow()}>
-         <FaPlus/>
+      <Button variant="success" className="mb-3" onClick={handleShow}>
+      <FaPlus />
       </Button>
       <ul className="list-group mt-5">
         {cursos.map((curso) => (
           <li key={curso.id} className="list-group-item d-flex justify-content-between align-items-center">
             <div>{curso.nombre}</div>
             <div>
-              <Button variant="warning" className="btn-sm " style={{ marginRight: '5px' }} onClick={() => handleEdit(curso)}>
-                     <FaEdit />
+              <Button variant="warning" className="btn-sm" style={{ marginRight: '5px' }} onClick={() => handleEdit(curso)}>
+                <FaEdit />
               </Button>
               <Button variant="danger" className="btn-sm" onClick={() => confirmDelete(curso.id)}>
-                     <FaTrash />
-                </Button>
+                <FaTrash />
+              </Button>
             </div>
           </li>
         ))}
@@ -167,9 +161,6 @@ export const Cursos = () => {
         </Modal.Header>
         <Modal.Body>
           <form>
-            <div className="mb-3">
-           
-            </div>
             <div className="mb-3">
               <label className="form-label">Nombre</label>
               <input
@@ -189,28 +180,27 @@ export const Cursos = () => {
                 rows="4"
                 value={currentCurso.descripcion}
                 onChange={(e) => setCurrentCurso({ ...currentCurso, descripcion: e.target.value })}
-             
               />
             </div>
             <div className="mb-3">
               <label className="form-label">Fecha de inicio</label>
               <input
-                type="text"
+                type="datetime-local"
                 className="form-control"
                 name="fechaInicio"
                 value={currentCurso.fechaInicio}
                 onChange={(e) => setCurrentCurso({ ...currentCurso, fechaInicio: e.target.value })}
-                />
+              />
             </div>
             <div className="mb-3">
               <label className="form-label">Días</label>
               <input
                 type="text"
                 className="form-control"
-                name="dia"
+                name="dias"
                 value={currentCurso.dias}
                 onChange={(e) => setCurrentCurso({ ...currentCurso, dias: e.target.value })}
-                />
+              />
             </div>
             <div className="mb-3">
               <label className="form-label">Horario</label>
@@ -220,31 +210,29 @@ export const Cursos = () => {
                 name="horario"
                 value={currentCurso.horario}
                 onChange={(e) => setCurrentCurso({ ...currentCurso, horario: e.target.value })}
-                />
+              />
             </div>
             <div className="mb-3">
-                <label className="form-label">URL de la Imagen</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="imagen"
-                  value={currentCurso.imagen}
-                  onChange={(e) => setCurrentCurso({ ...currentCurso, imagen: e.target.value })}
-                />
-              </div>
-           
+              <label className="form-label">URL de la Imagen</label>
+              <input
+                type="text"
+                className="form-control"
+                name="imagen"
+                value={currentCurso.imagen}
+                onChange={(e) => setCurrentCurso({ ...currentCurso, imagen: e.target.value })}
+              />
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="danger" onClick={handleClose}>
-              Cancelar
-            </Button>
-            <Button variant="success" onClick={handleSave}>
-              Guardar
-            </Button>
-          </Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button variant="success" onClick={handleSave}>
+            Guardar
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   );
 };
-
