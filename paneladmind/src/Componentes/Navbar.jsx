@@ -11,7 +11,7 @@ function Navbar() {
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
               <img src={ongpantalla} alt="Logo CDAJ" className="d-inline-block align-text-center logo" />
-              <span className="nombre">COFRADIA</span>
+              <span className="nombre">CDAJ Cofradia</span>
             </Link>
            
           </div>

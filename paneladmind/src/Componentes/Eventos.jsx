@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { FaEdit, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaTrash , FaPlus} from 'react-icons/fa';
 import { collection, getDocs, deleteDoc, doc, updateDoc, addDoc } from 'firebase/firestore/lite';
 import { db } from '../firebase/config';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Timestamp } from 'firebase/firestore/lite';
+
 
 const MySwal = withReactContent(Swal);
 
@@ -136,18 +137,18 @@ export const Eventos = () => {
       <div className="container col-lg-8">
         <h2 className="mt-5">Eventos </h2>
         <Button variant="success" className="mb-3" onClick={handleShow}>
-          Agregar
+           <FaPlus/>
         </Button>
         <ul className="list-group mb-4">
           {events.map((evento) => (
             <li key={evento.id} className="list-group-item d-flex justify-content-between align-items-center">
               <div>{evento.nombre}</div>
               <div>
-                <Button variant="secondary" className="btn-sm me-2" onClick={() => handleEdit(evento)}>
-                  <FaEdit />
+                <Button variant="warning" className="btn-sm " style={{ marginRight: '5px' }} onClick={() => handleEdit(evento)}>
+                    <FaEdit />
                 </Button>
                 <Button variant="danger" className="btn-sm" onClick={() => confirmDelete(evento.id)}>
-                  <FaTrash />
+                    <FaTrash />
                 </Button>
               </div>
             </li>
