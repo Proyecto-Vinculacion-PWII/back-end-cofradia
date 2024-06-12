@@ -185,7 +185,7 @@ export const Cursos = () => {
             <div className="mb-3">
               <label className="form-label">Fecha de inicio</label>
               <input
-                type="datetime-local"
+                type="date"
                 className="form-control"
                 name="fechaInicio"
                 value={currentCurso.fechaInicio}
