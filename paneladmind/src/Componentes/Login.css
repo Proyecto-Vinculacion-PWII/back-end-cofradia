@@ -1,9 +1,9 @@
 .login.container {
   max-width: 500px;
   padding: 20px;
-  background-color: #063118;
+  background-color: #176136;
   border-radius: 10px;
-  color: #070606;
+  color: #fdfafaf8;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
 .login label {
   display: block;
   margin-bottom: 5px;
-  color: #000000;
+  color: #fdfafaf8;
 }
 
 .login input[type="text"],
@@ -29,17 +29,18 @@
 }
 
 .login button[type="submit"] {
-  background-color: #29633B;
+  background-color: #66c785;
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  color: #020202;
+  color: #fdfafaf8;
   width: 200px;
+  font-weight: bold;
 }
 
 .login a {
   text-decoration: none;
-  color: #000000;
+  color: #fdfafaf8;
   margin-bottom: 10px; /* Add some space below the link */
 }
