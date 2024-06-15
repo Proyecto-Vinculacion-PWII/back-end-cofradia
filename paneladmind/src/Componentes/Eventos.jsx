@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import { FaEdit, FaTrash , FaPlus} from 'react-icons/fa';
+import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
 import { collection, getDocs, deleteDoc, doc, updateDoc, addDoc } from 'firebase/firestore/lite';
 import { db } from '../firebase/config';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { Timestamp } from 'firebase/firestore/lite';
+import '../styles/StyleEvents.css';
 
 
 const MySwal = withReactContent(Swal);
@@ -31,7 +32,7 @@ export const Eventos = () => {
       id: doc.id,
       nombre: doc.data().nombre,
       descripcion: doc.data().descripcion,
-      fechaInicio: doc.data().fechaInicio.toDate().toISOString().slice(0, 16),
+      fechaInicio: doc.data().fechaInicio.toDate().toISOString().slice(0, 10),
       horario: doc.data().horario,
       imagen: doc.data().imagen
     }));
@@ -137,23 +138,27 @@ export const Eventos = () => {
       <div className="container col-lg-8">
         <h2 className="mt-5">Eventos </h2>
         <Button variant="success" className="mb-3" onClick={handleShow}>
-           <FaPlus/>
+          <FaPlus />
         </Button>
         <ul className="list-group mb-4">
           {events.map((evento) => (
             <li key={evento.id} className="list-group-item d-flex justify-content-between align-items-center">
-              <div>{evento.nombre}</div>
+              <div className="d-flex flex-column">
+                <p className="mb-0">{evento.nombre}</p>
+                <small className="text-muted">{evento.horario}</small>
+              </div>
               <div>
-                <Button variant="warning" className="btn-sm " style={{ marginRight: '5px' }} onClick={() => handleEdit(evento)}>
-                    <FaEdit />
+                <Button variant="warning" className="btn-sm" style={{ marginRight: '5px' }} onClick={() => handleEdit(evento)}>
+                  <FaEdit />
                 </Button>
                 <Button variant="danger" className="btn-sm" onClick={() => confirmDelete(evento.id)}>
-                    <FaTrash />
+                  <FaTrash />
                 </Button>
               </div>
             </li>
           ))}
         </ul>
+
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -214,7 +219,7 @@ export const Eventos = () => {
             </form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="danger" onClick={handleClose}>
+            <Button className="btn-custom-cancelar" onClick={handleClose}>
               Cancelar
             </Button>
             <Button variant="success" onClick={handleSave}>

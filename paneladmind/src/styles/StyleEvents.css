@@ -1,0 +1,24 @@
+.btn-custom-cancelar {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: 1px solid red;
+}
+
+.btn-custom-cancelar:hover {
+    background-color: #ff01165d;
+    color: #000000;
+    border: 1px solid red;
+}
+
+/* @media (max-width: 576px) {
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .list-group-item div {
+        margin-bottom: 10px;
+    }
+}
+
+*/

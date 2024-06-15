@@ -1,19 +1,19 @@
 import { uploadfile } from "../firebase/config";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Form, Button, Alert, Row, Col } from 'react-bootstrap';
-import { FaCloudUploadAlt, FaCopy } from 'react-icons/fa';
+import { Container, Form, Button, Alert, Row, Col, Image } from 'react-bootstrap';
+import { FaCloudUploadAlt, FaCopy, FaTimes } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
 const MySwal = withReactContent(Swal);
 
 const UploadFiles = () => {
-
     const [file, setFile] = useState(null);
     const [uploadedUrl, setUploadedUrl] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [copyButtonText, setCopyButtonText] = useState('URL Imagen');
+    const [previewUrl, setPreviewUrl] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,6 +40,7 @@ const UploadFiles = () => {
             });
         } finally {
             setFile(null); // Limpiar el campo de archivo después de enviar
+            setPreviewUrl(null); // Limpiar la vista previa de la imagen
         }
     };
 
@@ -50,15 +51,32 @@ const UploadFiles = () => {
     };
 
     const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
+        const file = e.target.files[0];
+        setFile(file);
+        setUploadedUrl('');
+        setShowAlert(false);
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewUrl(reader.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            setPreviewUrl(null);
+        }
+    };
+
+    const handleCancelUpload = () => {
+        setFile(null);
+        setPreviewUrl(null);
         setUploadedUrl('');
         setShowAlert(false);
     };
 
-
     return (
         <>
-            <Container className="mb-5"> {/* Agregado espaciado aquí */}
+            <Container className="mb-5">
                 <Row className="justify-content-center">
                     <Col md={10} lg={6}>
                         <Form onSubmit={handleSubmit}>
@@ -66,7 +84,17 @@ const UploadFiles = () => {
                                 <Form.Label>Subir archivo</Form.Label>
                                 <Form.Control type="file" onChange={handleFileChange} />
                             </Form.Group>
-                            <Button variant="primary" type="submit" disabled={!file} className="w-100 mb-3">
+                            {previewUrl && (
+                                <div className="text-center">
+                                    <Image src={previewUrl} thumbnail fluid style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <div className="mt-3">
+                                        <Button variant="danger" onClick={handleCancelUpload}>
+                                            <FaTimes /> Cancelar
+                                        </Button>
+                                    </div>
+                                </div>
+                            )}
+                            <Button variant="primary" type="submit" disabled={!file} className="w-100 mt-3">
                                 <FaCloudUploadAlt /> Subir
                             </Button>
                         </Form>
@@ -84,7 +112,7 @@ const UploadFiles = () => {
                 </Row>
             </Container>
         </>
-    )
+    );
 }
 
 export default UploadFiles;
