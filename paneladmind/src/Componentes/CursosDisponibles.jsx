@@ -142,7 +142,12 @@ export const Cursos = () => {
       <ul className="list-group mt-5">
         {cursos.map((curso) => (
           <li key={curso.id} className="list-group-item d-flex justify-content-between align-items-center">
-            <div>{curso.nombre}</div>
+
+<div className="d-flex flex-column">
+  <p className="mb-1"><strong>{curso.nombre}</strong></p>
+  <small className="text-muted">{curso.dias}</small>
+  <small className="text-muted">{curso.horario}</small>
+</div>
             <div>
               <Button variant="warning" className="btn-sm" style={{ marginRight: '5px' }} onClick={() => handleEdit(curso)}>
                 <FaEdit />

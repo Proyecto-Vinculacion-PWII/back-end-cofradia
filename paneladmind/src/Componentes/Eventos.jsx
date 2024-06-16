@@ -143,10 +143,12 @@ export const Eventos = () => {
         <ul className="list-group mb-4">
           {events.map((evento) => (
             <li key={evento.id} className="list-group-item d-flex justify-content-between align-items-center">
+             
               <div className="d-flex flex-column">
-                <p className="mb-0">{evento.nombre}</p>
-                <small className="text-muted">{evento.horario}</small>
-              </div>
+  <p className="mb-1"><strong>{evento.nombre}</strong></p>
+  <small className="text-muted">{evento.fechaInicio}</small>
+  <small className="text-muted">{evento.horario}</small>
+</div>
               <div>
                 <Button variant="warning" className="btn-sm" style={{ marginRight: '5px' }} onClick={() => handleEdit(evento)}>
                   <FaEdit />
@@ -189,7 +191,7 @@ export const Eventos = () => {
               <div className="mb-3">
                 <label className="form-label">Fecha de inicio</label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   className="form-control"
                   name="fechaInicio"
                   value={currentEvento.fechaInicio}
