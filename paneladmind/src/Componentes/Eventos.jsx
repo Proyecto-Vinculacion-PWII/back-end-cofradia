@@ -140,7 +140,7 @@ export const Eventos = () => {
         <Button variant="success" className="mb-3" onClick={handleShow}>
           <FaPlus />
         </Button>
-        <ul className="list-group mb-4">
+        <ul className="list-group mt-3 mb-4">
           {events.map((evento) => (
             <li key={evento.id} className="list-group-item d-flex justify-content-between align-items-center">
              

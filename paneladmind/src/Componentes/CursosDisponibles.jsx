@@ -139,7 +139,7 @@ export const Cursos = () => {
       <Button variant="success" className="mb-3" onClick={handleShow}>
       <FaPlus />
       </Button>
-      <ul className="list-group mt-5">
+      <ul className="list-group mt-3">
         {cursos.map((curso) => (
           <li key={curso.id} className="list-group-item d-flex justify-content-between align-items-center">
 
