@@ -230,7 +230,7 @@ export const Cursos = () => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
+          <Button className="btn-custom-cancelar" onClick={handleClose}>
             Cancelar
           </Button>
           <Button variant="success" onClick={handleSave}>
