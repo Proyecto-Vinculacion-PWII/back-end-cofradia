@@ -12,7 +12,7 @@ function SignInwithGoogle() {
     const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
+      // console.log(result);
       const user = result.user;
       if (user) {
         const userDocRef = doc(db, "Users", user.uid);
@@ -32,7 +32,7 @@ function SignInwithGoogle() {
 
   return (
     <div>
-      <p className="continue-p" style={{ textAlign: "center", marginBottom: "2px", marginTop: "10px"}}>--O continuar con--</p>
+      <p className="continue-p" style={{ textAlign: "center", marginBottom: "2px", marginTop: "10px" }}>--O continuar con--</p>
       <div
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
         onClick={googleLogin}

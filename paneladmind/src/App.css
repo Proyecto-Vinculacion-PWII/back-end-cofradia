@@ -9,7 +9,7 @@
 }
 
 .nombre {
-  font-size: 1em; 
+  font-size: 1em;
 }
 
 .container {
@@ -19,7 +19,7 @@
 .navbar {
   background-color: rgba(255, 196, 0, 0.795);
   display: flex;
-  align-items: center; 
+  align-items: center;
   width: 100%;
   margin-bottom: 50px;
 }
@@ -50,14 +50,17 @@
   flex-wrap: wrap;
 }
 
+@media (max-width: 768px) {
 
+  /* Cambia el logo en dispositivos móviles */
+  #logo {
+    content: url('./assets/IsologoONGMovil.png');
+    /* Cambia la imagen a la versión para móviles */
+  }
+}
 
 .foto {
   width: 100px;
   height: auto;
   margin: 10px;
 }
-
-
-
-

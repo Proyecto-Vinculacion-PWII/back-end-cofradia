@@ -19,7 +19,7 @@ function Navbar() {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-               navigate('/');
+        navigate('/');
       }
     });
   };
@@ -30,7 +30,7 @@ function Navbar() {
         <nav className="navbar fixed-top navbar-expand-lg mb-5">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              <img src={ongpantalla} alt="Logo CDAJ" className="d-inline-block align-text-center logo" />
+              <img src={ongpantalla} alt="Logo CDAJ" className="d-inline-block align-text-center logo" id="logo" />
               <span className="nombre">CDAJ Cofradia</span>
             </Link>
             <button className="btn  btn-outline-dark" onClick={handleLogout}>
